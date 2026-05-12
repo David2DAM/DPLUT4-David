@@ -2,7 +2,9 @@ package com.example.david.controller;
 
 import com.example.david.model.Estudiante;
 import com.example.david.service.EstudianteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,19 +13,33 @@ import java.util.List;
 @RequestMapping("/api/estudiantes")
 public class EstudianteController {
 
-    // Volvemos a usar Inyección de Dependencias para traer el Service
     @Autowired
     private EstudianteService service;
 
-    // Endpoint para guardar (POST: http://localhost:8080/api/estudiantes)
     @PostMapping
-    public Estudiante crear(@RequestBody Estudiante estudiante) {
-        return service.guardarEstudiante(estudiante);
+    public ResponseEntity<Estudiante> crear(@Valid @RequestBody Estudiante estudiante) {
+        return ResponseEntity.ok(service.guardarEstudiante(estudiante));
     }
 
-    // Endpoint para listar (GET: http://localhost:8080/api/estudiantes)
     @GetMapping
-    public List<Estudiante> listarTodos() {
-        return service.obtenerTodos();
+    public ResponseEntity<List<Estudiante>> listarTodos() {
+        return ResponseEntity.ok(service.obtenerTodos());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Estudiante> obtenerPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(service.obtenerPorId(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Estudiante> actualizar(@PathVariable Long id,
+                                                 @Valid @RequestBody Estudiante datos) {
+        return ResponseEntity.ok(service.actualizarEstudiante(id, datos));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+        service.eliminarEstudiante(id);
+        return ResponseEntity.noContent().build();
     }
 }
