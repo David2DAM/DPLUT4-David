@@ -4,7 +4,7 @@ on:
   push:
 # Para que lo haga en todas la ramas
     branches: [ "**" ]
-pull_request:
+  pull_request:
     branches: [ "main" ]
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # <- Fuerza Node.js 24
