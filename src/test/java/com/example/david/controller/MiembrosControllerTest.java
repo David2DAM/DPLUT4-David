@@ -35,7 +35,7 @@ public class MiembrosControllerTest {
 
         when(service.obtenerTodos()).thenReturn(List.of(e));
 
-        mockMvc.perform(get("/api/estudiantes"))
+        mockMvc.perform(get("/api/miembros"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].nombre").value("Ana"));
