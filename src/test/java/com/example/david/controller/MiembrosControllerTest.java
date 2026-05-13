@@ -38,6 +38,6 @@ public class MiembrosControllerTest {
         mockMvc.perform(get("/api/miembros"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].nombre").value("Ana"));
+                .andExpect(jsonPath("$[0].nombre").value("Ana3241"));
     }
 }
