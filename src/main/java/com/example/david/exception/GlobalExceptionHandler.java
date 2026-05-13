@@ -12,8 +12,8 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     // Estudiante no encontrado → 404
-    @ExceptionHandler(EstudianteNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleNotFound(EstudianteNotFoundException ex) {
+    @ExceptionHandler(MiembrosNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleNotFound(MiembrosNotFoundException ex) {
         Map<String, String> error = new HashMap<>();
         error.put("error", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);

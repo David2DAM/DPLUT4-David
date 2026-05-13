@@ -1,9 +1,9 @@
 package com.david.service;
 
-import com.example.david.model.Estudiante;
-import com.example.david.repository.EstudianteRepository;
+import com.example.david.model.Miembros;
+import com.example.david.repository.MiembrosRepository;
 
-import com.example.david.service.EstudianteService;
+import com.example.david.service.MiembrosService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,41 +18,41 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EstudianteServiceTest {
+public class MiembrosServiceTest {
 
     @Mock
-    private EstudianteRepository repository;
+    private MiembrosRepository repository;
 
     @InjectMocks
-    private EstudianteService service;
+    private MiembrosService service;
 
-    private Estudiante estudiante;
+    private Miembros miembros;
 
     @BeforeEach
     void setUp() {
-        estudiante = new Estudiante();
-        estudiante.setId(1L);
-        estudiante.setNombre("Juan Perez");
-        estudiante.setEmail("juan@ejemplo.com");
-        estudiante.setEdad(20);
+        miembros = new Miembros();
+        miembros.setId(1L);
+        miembros.setNombre("Juan Perez");
+        miembros.setEmail("juan@ejemplo.com");
+        miembros.setEdad(20);
     }
 
     @Test
     void testGuardarEstudiante() {
-        when(repository.save(any(Estudiante.class)))
-                .thenReturn(estudiante);
-        Estudiante guardado = service.guardarEstudiante(estudiante);
+        when(repository.save(any(Miembros.class)))
+                .thenReturn(miembros);
+        Miembros guardado = service.guardarEstudiante(miembros);
         assertNotNull(guardado);
         assertEquals("Juan Perez", guardado.getNombre());
         verify(repository, times(1))
-                .save(any(Estudiante.class));
+                .save(any(Miembros.class));
     }
 
     @Test
     void testObtenerTodos() {
         when(repository.findAll())
-                .thenReturn(List.of(estudiante));
-        List<Estudiante> lista = service.obtenerTodos();
+                .thenReturn(List.of(miembros));
+        List<Miembros> lista = service.obtenerTodos();
         assertFalse(lista.isEmpty());
         assertEquals(1, lista.size());
         verify(repository, times(1)).findAll();

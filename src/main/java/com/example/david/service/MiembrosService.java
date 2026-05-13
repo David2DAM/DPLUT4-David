@@ -1,34 +1,34 @@
 package com.example.david.service;
 
-import com.example.david.model.Estudiante;
-import com.example.david.repository.EstudianteRepository;
-import com.example.david.exception.EstudianteNotFoundException;
+import com.example.david.model.Miembros;
+import com.example.david.repository.MiembrosRepository;
+import com.example.david.exception.MiembrosNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EstudianteService {
+public class MiembrosService {
 
     @Autowired
-    private EstudianteRepository repository;
+    private MiembrosRepository repository;
 
-    public Estudiante guardarEstudiante(Estudiante estudiante) {
-        return repository.save(estudiante);
+    public Miembros guardarEstudiante(Miembros miembros) {
+        return repository.save(miembros);
     }
 
-    public List<Estudiante> obtenerTodos() {
+    public List<Miembros> obtenerTodos() {
         return repository.findAll();
     }
 
-    public Estudiante obtenerPorId(Long id) {
+    public Miembros obtenerPorId(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new EstudianteNotFoundException(id));
+                .orElseThrow(() -> new MiembrosNotFoundException(id));
     }
 
-    public Estudiante actualizarEstudiante(Long id, Estudiante datos) {
-        Estudiante existente = obtenerPorId(id);
+    public Miembros actualizarEstudiante(Long id, Miembros datos) {
+        Miembros existente = obtenerPorId(id);
         existente.setNombre(datos.getNombre());
         existente.setEmail(datos.getEmail());
         existente.setEdad(datos.getEdad());

@@ -5,9 +5,9 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "estudiantes")
+@Table(name = "miembros")
 @Data
-public class Estudiante {
+public class Miembros {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

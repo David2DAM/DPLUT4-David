@@ -1,8 +1,7 @@
 package com.example.david.controller;
 
-import com.example.david.controller.EstudianteController;
-import com.example.david.model.Estudiante;
-import com.example.david.service.EstudianteService;
+import com.example.david.model.Miembros;
+import com.example.david.service.MiembrosService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,18 +15,18 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(EstudianteController.class)
-public class EstudianteControllerTest {
+@WebMvcTest(MiembrosController.class)
+public class MiembrosControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockitoBean  // Spring Boot 3.4+ reemplaza @MockBean
-    private EstudianteService service;
+    private MiembrosService service;
 
     @Test
     void testListarTodosEndpoint() throws Exception {
-        Estudiante e = new Estudiante();
+        Miembros e = new Miembros();
         e.setNombre("Ana");
 
         when(service.obtenerTodos()).thenReturn(List.of(e));
