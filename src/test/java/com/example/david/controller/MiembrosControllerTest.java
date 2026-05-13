@@ -4,7 +4,9 @@ import com.example.david.model.Miembros;
 import com.example.david.service.MiembrosService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.example.david.exception.GlobalExceptionHandler;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -15,7 +17,9 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+
 @WebMvcTest(MiembrosController.class)
+@Import(GlobalExceptionHandler.class)
 public class MiembrosControllerTest {
 
     @Autowired
